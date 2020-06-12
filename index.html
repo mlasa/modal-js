@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal</title>
+  </head>
+  <body>
+    <style>
+      * {
+        font-family: monospace;
+      }
+      .modal-container {
+        z-index: 2000;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.65);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-container.show {
+        display: flex;
+      }
+      .modal {
+        background-color: #ffffff;
+        width: 60%;
+        min-width: 300px;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0 0 25px rgb(109, 109, 109);
+        position: relative;
+      }
+
+      @keyframes modalAnimation {
+        from {
+          opacity: 0;
+          transform: translate3d(0, -60px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      .show .modal {
+        animation: modalAnimation 0.3s;
+      }
+
+      .input {
+        width: 100%;
+        border: none;
+        outline: 0;
+        height: 35px;
+        border-bottom: 2px solid #cacaca;
+        background-color: rgba(255, 255, 255, 0);
+        transition: border-bottom 0.7s ease;
+        text-align: center;
+      }
+      .input:focus,
+      .input:hover {
+        border-bottom: 3px solid rgb(0, 0, 0);
+      }
+      .button {
+        height: 38px;
+        width: 100%;
+        margin-top: 10px;
+        border: none;
+        background: none;
+        outline: none;
+        border-radius: 2px;
+        background-color: #ebebeb;
+        cursor: pointer;
+      }
+      .button:hover {
+        background-color: #d1d1d1;
+      }
+      .title {
+        text-align: center;
+      }
+      .button-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        border: none;
+        font-size: 22px;
+        outline: none;
+        cursor: pointer;
+        background-color: white;
+      }
+      .button-close:hover {
+        font-size: 24px;
+      }
+    </style>
+
+    <div class="site">
+      <input
+        type="button"
+        value="Abrir"
+        class="button-open button"
+        id="button-open"
+      />
+    </div>
+    <div class="modal-container" id="modal-container">
+      <div class="modal" id="modal">
+        <button type="button" class="button-close" id="button-close">
+          X
+        </button>
+        <h1 class="title" id="title">Olá</h1>
+        <form class="form">
+          <input
+            type="text"
+            class="input"
+            id="input"
+            placeholder="Qual é seu nome?"
+          />
+          <input
+            type="button"
+            class="button-send button"
+            id="button-send"
+            value="Enviar"
+          />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const btnOpen = document.getElementById("button-open");
+			const btnClose = document.getElementById("button-close");
+			const outOfModal = document.getElementById("modal-container")
+
+      function callModal(modalID) {
+        const modal = document.getElementById(modalID);
+        console.log(modal);
+        modal.classList.add("show");
+      }
+
+      function closeModal(modalID) {
+        const modal = document.getElementById(modalID);
+        modal.classList.remove("show");
+      }
+
+      btnOpen.addEventListener("click", () => {
+        callModal("modal-container");
+      });
+
+      btnClose.addEventListener("click", () => {
+        closeModal("modal-container");
+			});
+			outOfModal.addEventListener("click", () => {
+					closeModal("modal-container");
+				});
+    </script>
+  </body>
+</html>

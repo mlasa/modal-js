@@ -1,2 +1,3 @@
 # modal-js
-![Screenshot](screenshot.png)
+![Screenshot](screen1.png)
+![Screenshot](screen2.png)
